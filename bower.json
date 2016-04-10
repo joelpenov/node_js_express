@@ -1,0 +1,17 @@
+{
+  "name": "nodejswithexpress",
+  "description": "Practical project from PluralSight",
+  "main": "index.js",
+  "authors": [
+    "Joel Peña Arias"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
