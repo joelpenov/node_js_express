@@ -35,9 +35,9 @@
     <nav class="collapse navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
         
-      <% for(var i = 0; i < patriots.length;i++){%>
+      <% for(var i = 0; i < menu.length;i++){%>
         <li>
-          <a href="#"><%= patriots[i] %></a>
+          <a href="<%= menu[i].link %>"><%=  menu[i].label %></a>
         </li>       
         <%}%>
       </ul>
