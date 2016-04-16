@@ -5,14 +5,14 @@ var nodemon = require('gulp-nodemon');
 
 var jsFiles = ['*.js', 'src/**/*.js'];
 
-gulp.task('style', () => 
+gulp.task('style', function() {
           gulp.src(jsFiles)
           .pipe(jshint())
           .pipe(jshint.reporter('jshint-stylish', {verbose: true}))
           .pipe(jscs())
-         );
+         });
 
-gulp.task('inject', () => {
+gulp.task('inject', function() {
     
     var injectSource = gulp.src(
       ['./static/css/*.css', './static/js/*.js'], 
@@ -29,7 +29,7 @@ gulp.task('inject', () => {
     var wiredepOptions = {
           bowerJson: require('./bower.json'),
           directory: './static/lib',
-          ignorePath: '../../static/'  
+          ignorePath: '../../static'  
           };
         
     return gulp.src('./src/views/*.ejs')    
@@ -38,7 +38,7 @@ gulp.task('inject', () => {
          .pipe(gulp.dest('./src/views'));
        });
 
-gulp.task('serve', ['style', 'inject'], () => {
+gulp.task('serve', ['style', 'inject'], function() {
     var nodemonOptions = {
       script: 'app.js',
       env: {
@@ -49,7 +49,7 @@ gulp.task('serve', ['style', 'inject'], () => {
     };
 
     return nodemon(nodemonOptions)
-           .on('restart', (evnt) => {
+           .on('restart', function(evnt) {
               console.log('Restarting the server...');
               })
 });
