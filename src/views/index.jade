@@ -1,0 +1,30 @@
+html
+	head
+		title Hello page
+		//- bower:css
+		link(rel='stylesheet', href='lib/bootstrap/dist/css/bootstrap.min.css')
+		link(rel='stylesheet', href='lib/font-awesome/css/font-awesome.min.css')
+		//- endbower		
+
+		//- inject:css
+		link(rel="stylesheet", href="/css/styles.css")
+		//- endinject
+	body(class='myClass')
+		div(class="container")
+			h1(id='mainHeader') My header
+			p
+				h3 Minor header
+			p
+				ul
+					each val in lista
+						li=val
+
+
+		//- bower:js
+		script(src='lib/jquery/dist/jquery.js')
+		script(src='lib/bootstrap/dist/js/bootstrap.js')
+		//- endbower
+
+		//- inject:js
+		script(src="/js/app.js")
+		//- endinject

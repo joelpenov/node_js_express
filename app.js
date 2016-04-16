@@ -5,11 +5,19 @@ var app = express();
 var PORT = process.env.PORT || 5346;
 
 app.use(express.static('static'));
-app.use(express.static('src/views'));
+
+app.set(('./src/views'));
+app.set('views', './src/views');
+
+
+var habdlebars = require('express-handlebars');
+app.engine('.hbs', habdlebars({extname: '.hbs'}));
+
+app.set('view engine', '.hbs');
 
 
 app.get('/', (request, response) =>{
-    response.send('Hello');
+    response.render('index', {title: 'Title from render', patriots: ['Juan Pablo Duarte', 'Ramon Matias Mella', 'Francisco del Rosario Sanchez']});
 });
 
 app.get('/books', (request, response) =>{

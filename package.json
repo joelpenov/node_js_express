@@ -10,7 +10,9 @@
   "author": "Joel Peña Arias",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "express-handlebars": "^3.0.0",
+    "jade": "^1.11.0"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
