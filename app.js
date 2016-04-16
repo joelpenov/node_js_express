@@ -10,10 +10,10 @@ app.set(('./src/views'));
 app.set('views', './src/views');
 
 
-var habdlebars = require('express-handlebars');
-app.engine('.hbs', habdlebars({extname: '.hbs'}));
+// var habdlebars = require('express-handlebars');
+// app.engine('.hbs', habdlebars({extname: '.hbs'}));
 
-app.set('view engine', '.hbs');
+app.set('view engine', 'ejs');
 
 
 app.get('/', (request, response) =>{

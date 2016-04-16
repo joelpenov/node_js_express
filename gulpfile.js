@@ -32,7 +32,7 @@ gulp.task('inject', () => {
           ignorePath: '../../static/'  
           };
         
-    return gulp.src('./src/views/*.hbs')    
+    return gulp.src('./src/views/*.ejs')    
          .pipe(wiredep(wiredepOptions))
          .pipe(inject(injectSource, injectOptions))
          .pipe(gulp.dest('./src/views'));
