@@ -1,22 +1,55 @@
+
 var express = require('express');
+var mysql = require('mysql');
+
 var booksRouter = express.Router();
 
-var fakeBooks = [{title: 'Cuentos antes del Exilio', author: 'Juan Bosh', genre: 'Stories', read: false},
-				{title: 'Conversacion en la catedral', author: 'Vincent Vangoh', genre: 'Mistery', read: false},
-				{title: 'Guerra y paz', author: 'Zing Ong', genre: 'War', read: false},
-				{title: 'Cien anos de soledad', author: 'Gabriel Garcia Marquez', genre: 'Magic', read: false},]
+var connection = mysql.createConnection({
+  host: "localhost",
+  user: "booksuser",
+  password: "W3lc0m3Job",
+  database: "booksdb"
+});
+
+
+connection.connect(function(err){
+ if(!err) {
+     console.log("Database is connected ... \n\n");  
+ } else {
+     console.log("Error connecting database ... \n\n", err);  
+ }
+ });
 
 var router = function (menu) {
-	booksRouter.route('/')
+	booksRouter.route('/')	
 	.get( function(request, response) {
-		response.render('books', {title:'Books', books: fakeBooks, menu: menu});
+		connection.query('SELECT * from book;', function(err, rows, fields) {
+ 		
+	   if (!err)
+	     response.render('books', {title:'Books', books: rows, menu: menu});
+	   else
+	     console.log('Error while performing Query.');
+	   });		
 	});
 
 	booksRouter.route('/:id')
+	.all(function(req, resp, next){
+		var id = req.params.id;
+		var query = `SELECT * from book where id = ${id};`;		
+		connection.query(query, function(err, rows, fields) {		
+
+	   if (!err){	   	
+	   		req.book = rows[0];
+	   		next();
+	   }	   
+	   else
+	     console.log('Error while performing Query.');
+	   });	
+		
+	})
 	.get( function(request, response) {
-		var id = request.params.id;
-		var book = fakeBooks[parseInt(id) - 1];
-		response.render('book', {title:book.title, menu: menu, book: book});
+		var book = request.book || {};
+		response.render('book', {title: book.title ? book.title + ' - ' + book.author: "Not found", menu: menu, book: book});
 	});
 
 	return booksRouter;

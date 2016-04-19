@@ -1,3 +1,4 @@
+
 var express = require('express');
 
 var app = express();
@@ -9,21 +10,18 @@ var menu = [
     		{link:'/authors', label:'Authors'},
     	];
 
-
-
 app.use(express.static('static'));
 
 app.set(('./src/views'));
 app.set('views', './src/views');
 
 var booksRouter = require('./src/routes/booksRouter')(menu);
-
-// var habdlebars = require('express-handlebars');
-// app.engine('.hbs', habdlebars({extname: '.hbs'}));
+var adminRouter = require('./src/routes/adminRouter')(menu);
 
 app.set('view engine', 'ejs');
 
 app.use('/books', booksRouter);
+app.use('/admin', adminRouter);
 
 app.get('/', function (request, response){
     response.render('index', {title: 'Hssome', menu: menu});
@@ -33,10 +31,10 @@ app.get('/books',function (request, response){
     response.send('Hello Books');
 });
 
-app.listen(PORT, (error) => { 
+app.listen(PORT, function(error) { 
                 if(error) 
                 {
-                    console.log("Hay un error: " + error);
+                    console.log("Something was wrong...: " + error);
                     return;
                 }
                 console.log(`App running on ${PORT}` );

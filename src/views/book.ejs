@@ -17,8 +17,7 @@
 
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <link href="css/styles.css" rel="stylesheet">
+    <![endif]-->    
   </head>
   <body>
 <header class="navbar navbar-bright navbar-fixed-top" role="banner">
@@ -96,7 +95,7 @@
         <div class="panel-body">
           
           <!--stories-->
-              
+           <% if(book.id) {%>  
           <div class="row">    
             <br>
             <div class="col-md-2 col-sm-3 text-center">
@@ -115,7 +114,11 @@
             </div>
           </div>
           <hr>
-          
+          <% } else{ %>  
+            <h1>Book doesn't found, try with another one.</h1>
+          <% } %>
+
+        
           <!--/stories-->          
           
           <a href="/books" class="btn btn-primary pull-right btnNext">All books <i class="glyphicon glyphicon-chevron-right"></i></a>
