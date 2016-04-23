@@ -38,6 +38,7 @@ app.get('/', function (request, response){
     response.render('index', {title: 'Hssome', menu: menu});
 });
 
-app.listen(PORT, function(error) { if(error){console.log('Something was wrong...: ' + error);return;}
-                console.log(`App running on ${PORT}` );
+app.listen(PORT, function(error) { 
+			if(error){console.log('Something was wrong...: ' + error);return;}
+            console.log(`App running on ${PORT}` );
             });

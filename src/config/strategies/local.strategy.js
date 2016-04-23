@@ -12,7 +12,7 @@ module.exports = function(){
 			var users = db.collection('users');			
 			users.findOne({username: username}, function(err, userEntity){				
 				if(userEntity.password === password){ done(null, userEntity);}
-				else done(null, false, {message: '401, unauthorize user'});
+				else {done(null, false, {message: '401, unauthorize user'});}
 			});
 			
 		});
