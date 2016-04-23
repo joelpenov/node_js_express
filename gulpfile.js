@@ -9,7 +9,7 @@ gulp.task('style', function() {
           gulp.src(jsFiles)
           .pipe(jshint())
           .pipe(jshint.reporter('jshint-stylish', {verbose: true}))
-          .pipe(jscs())
+          .pipe(jscs());
          });
 
 gulp.task('inject', function() {
@@ -51,5 +51,5 @@ gulp.task('serve', ['style', 'inject'], function() {
     return nodemon(nodemonOptions)
            .on('restart', function(evnt) {
               console.log('Restarting the server...');
-              })
+              });
 });

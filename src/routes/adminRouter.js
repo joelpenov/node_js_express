@@ -7,8 +7,7 @@ var books =[{title: 'Cuentos antes del Exilio', author: 'Juan Bosh', genre: 'Sto
 				{title: 'Guerra y paz', author: 'Zing Ong', genre: 'War', read: false},
 				{title: 'Cien anos de soledad', author: 'Gabriel Garcia Marquez', genre: 'Magic', read: false}];
 
-var router = function (menu) {
-	
+var router = function (menu) {	
 	adminRouter.route('/addbooks/').get( function(req, res){
 		 var connectionString = 'mongodb://localhost:27017/books';
 		 mongodb.connect(connectionString, function(err, db){

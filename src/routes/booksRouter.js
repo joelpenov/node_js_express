@@ -3,11 +3,19 @@ var express = require('express');
 var mongodb = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
-var mongoDbUrl = 'mongodb://localhost:27017/books';
+var mongoDbUrl = require('../config/database').MONGO_URL;
 
 var booksRouter = express.Router();
 
 var router = function (menu) {
+
+	booksRouter.use(function(req, resp, next){
+		if(!req.user){
+			resp.redirect('/');
+		}
+		next();
+	});
+
 	booksRouter.route('/')
 	.get( function(request, response) {
 		
@@ -35,7 +43,7 @@ var router = function (menu) {
 	})
 	.get( function(request, response) {
 		var book = request.book || {};		
-		response.render('book', {title: book.title ? book.title + ' - ' + book.author: "Not found", menu: menu, book: book});
+		response.render('book', {title: book.title ? book.title + ' - ' + book.author: 'Not found', menu: menu, book: book});
 	});
 
 	return booksRouter;
