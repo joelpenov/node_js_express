@@ -29,7 +29,7 @@ var authController = function(){
 			resp.redirect('/');
 		}
 		next();
-	}
+	};
 
 	return {
 		signUp: signUp, 

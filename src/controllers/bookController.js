@@ -23,7 +23,7 @@ var bookController = function(bookService, menu){
 					if(error){ resp.redirect('/books');}					
 					var book = bookObject || {};
 					bookService.getById(book.bookId, function(e, response){
-						book.serviceBook = response;
+						book.serviceBook = response;						
 						resp.render('book', {
 						title: book.title ? book.title + ' - ' + book.author: 'Not found', 
 						menu: menu, book: book
